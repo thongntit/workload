@@ -12,6 +12,8 @@ services:
       - RDS_DATABASE_URL
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.todo-be-http.rule=PathPrefix(`/todo/`)"
+      - "traefik.http.routers.todo-be-http.middlewares=test-redirectscheme"
       - "traefik.http.routers.todo-be.rule=PathPrefix(`/todo/`)"
       - "traefik.http.routers.todo-be.tls=true"
       - "traefik.http.routers.todo-be.tls.certresolver=le"
@@ -20,6 +22,8 @@ services:
     image: "jmalloc/echo-server"
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.echo-http.rule=PathPrefix(`/echo`)"
+      - "traefik.http.routers.echo-http.middlewares=test-redirectscheme"
       - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
       - "traefik.http.routers.echo.tls=true"
       - "traefik.http.routers.echo.tls.certresolver=le"
