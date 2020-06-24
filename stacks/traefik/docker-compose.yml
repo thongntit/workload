@@ -12,6 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - "traefik.frontend.rule=Host:api.thongnt.space"
+      - "traefik.http.routers.todo-be.rule=PathPrefix(`/todo`)"
     networks:
       - network
 
