@@ -10,6 +10,9 @@ services:
     environment:
       - NODE_ENV=production
       - RDS_DATABASE_URL
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routes.todo-be.rule=PathPrefix(`/todo/`)"
     deploy:
       replicas: 1
       update_config:
@@ -17,10 +20,6 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-      labels:
-        - traefik.backend=todo-be
-        - traefik.docker.network=traefik_network
-        - traefik.port=8080
   echo:
     image: "jmalloc/echo-server"
     labels:
