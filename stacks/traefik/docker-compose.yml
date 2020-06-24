@@ -8,6 +8,7 @@ services:
     - --api.insecure=true
     - --providers.docker
     - --entrypoints.websecure.address=:443
+    - --certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     - --certificatesresolvers.le.acme.email=nanolove95@gmail.com
     - --certificatesresolvers.le.acme.storage=/acme.json
     - --certificatesresolvers.le.acme.tlschallenge=true
