@@ -26,6 +26,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
+    networks:
+      - traefik_network
 
 networks:
   traefik_network:
