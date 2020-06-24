@@ -21,8 +21,8 @@ services:
         - traefik.backend=todo-be
         - traefik.docker.network=traefik_network
         - traefik.port=8080
-    echo:
-      image: "jmalloc/echo-server"
+  echo:
+    image: "jmalloc/echo-server"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
