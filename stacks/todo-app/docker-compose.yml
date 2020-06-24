@@ -12,7 +12,7 @@ services:
       - RDS_DATABASE_URL
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routes.todo-be.rule=PathPrefix(`/todo/`)"
+      - "traefik.http.routers.todo-be.rule=PathPrefix(`/todo/`)"
   echo:
     image: "jmalloc/echo-server"
     labels:
