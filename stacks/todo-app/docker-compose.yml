@@ -10,16 +10,9 @@ services:
     environment:
       - NODE_ENV=production
       - RDS_DATABASE_URL
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
-      labels:
-        - "traefik.enable=true"
-        - "traefik.http.routes.todo-be.rule=PathPrefix(`/todo/`)"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routes.todo-be.rule=PathPrefix(`/todo/`)"
   echo:
     image: "jmalloc/echo-server"
     labels:
