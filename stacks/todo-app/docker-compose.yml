@@ -13,11 +13,15 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.todo-be.rule=PathPrefix(`/todo/`)"
+      - "traefik.http.routers.todo-be.tls=true"
+      - "traefik.http.routers.echo.tls.certresolver=le"
   echo:
     image: "jmalloc/echo-server"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
+      - "traefik.http.routers.echo.tls=true"
+      - "traefik.http.routers.echo.tls.certresolver=le"
     networks:
       - traefik_network
 
