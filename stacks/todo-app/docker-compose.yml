@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - RDS_DATABASE_URL
     deploy:
       replicas: 1
       update_config:
