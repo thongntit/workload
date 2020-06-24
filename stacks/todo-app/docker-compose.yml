@@ -9,7 +9,6 @@ services:
       - traefik_network
     environment:
       - NODE_ENV=production
-      - PORT=3000
       - RDS_DATABASE_URL
     deploy:
       replicas: 1
@@ -20,9 +19,7 @@ services:
         condition: on-failure
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.todo-be.rule=PATHPREFIX(`/todo`)"
         - "traefik.backend=api"
-        - "traefik.port=3000"
 
 networks:
   traefik_network:
