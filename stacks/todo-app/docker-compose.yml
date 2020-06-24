@@ -2,7 +2,7 @@
 version: '3.5'
 
 services:
-  backend:
+  todo-be:
     image: registry.gitlab.com/trthong95/todo_app:latest
     container_name: todo-app-be
     networks:
@@ -18,6 +18,8 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
+      labels:
+        - "traefik.http.routers.todo-be.rule=PATHPREFIX(`/todo`)"
 
 networks:
   traefik_network:
