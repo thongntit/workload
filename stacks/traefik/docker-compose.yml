@@ -5,7 +5,8 @@ services:
     image: traefik:v2.2
     container_name: "traefik"
     command:
-    - "--api.insecure=true"
+    - "--api=true"
+    - "--api.dashboard=true"
     - "--log.level=DEBUG"
     - "--providers.docker"
     - "--entrypoints.web.address=:80"
@@ -21,7 +22,10 @@ services:
       - "./:/cert"
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
-      - "traefik.frontend.rule=Host:api.thongnt.space"
+      - "traefik.http.routers.traefik.rule=Host(`api.thongnt.space`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=nanolove95:$$apr1$$BhRiDaDt$$/Eb9rkCD2lcOZ125odz4K/"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.scheme=https"
       - "traefik.http.middlewares.test-redirectscheme.redirectscheme.permanent=true"
 
