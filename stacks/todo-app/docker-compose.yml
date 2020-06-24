@@ -19,6 +19,7 @@ services:
       restart_policy:
         condition: on-failure
       labels:
+        - "traefik.enable=true"
         - "traefik.http.routers.todo-be.rule=PATHPREFIX(`/todo`)"
         - "traefik.backend=api"
         - "traefik.port=3000"
