@@ -6,18 +6,18 @@ services:
     container_name: "traefik"
     command:
     - --api.insecure=true
+    - --log.level="DEBUG"
     - --providers.docker
     - --entrypoints.websecure.address=:443
-    - --certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     - --certificatesresolvers.le.acme.email=nanolove95@gmail.com
-    - --certificatesresolvers.le.acme.storage=/acme.json
+    - --certificatesresolvers.le.acme.storage=/cert/acme.json
     - --certificatesresolvers.le.acme.tlschallenge=true
     ports:
       - "80:80"
       - "443:443"
       - "8080:8080"
     volumes:
-      - "./traefikdata:/"
+      - "./cert:/cert"
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
       - "traefik.frontend.rule=Host:api.thongnt.space"
