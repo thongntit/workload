@@ -2,31 +2,15 @@
 version: '3.5'
 
 services:
-  frontend:
-    image: registry.gitlab.com/trthong95/todo_app_fe:latest
-    container_name: todo-app-fe
-    networks:
-      - todo-app
-    ports:
-      - 80:80
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 2
-        delay: 10s
-      restart_policy:
-        condition: on-failure
   backend:
     image: registry.gitlab.com/trthong95/todo_app:latest
     container_name: todo-app-be
     networks:
-      - todo-app
+      - traefik_network
     ports:
-      - 8080:8080
+      - 3000:3000
     environment:
       - NODE_ENV=production
-    depends_on:
-      - "db"
     deploy:
       replicas: 1
       update_config:
@@ -34,32 +18,7 @@ services:
         delay: 10s
       restart_policy:
         condition: on-failure
-  db:
-    image: mysql
-    container_name: todo-app-db
-    networks:
-      - todo-app
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-    ports:
-      - 3306:3306
-    volumes:
-      - todo_db:/var/lib/mysql
-
-  adminer:
-    image: adminer
-    container_name: todo-app-adminer
-    networks:
-      - todo-app
-    restart: always
-    ports:
-      - 8000:8080
-
-volumes:
-  todo_db:
 
 networks:
-  todo-app:
-    name: todo-network
+  traefik_network:
+    external: true
