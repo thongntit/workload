@@ -14,7 +14,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.todo-be.rule=PathPrefix(`/todo/`)"
       - "traefik.http.routers.todo-be.tls=true"
-      - "traefik.http.routers.echo.tls.certresolver=le"
+      - "traefik.http.routers.todo-be.tls.certresolver=le"
   echo:
     image: "jmalloc/echo-server"
     labels:
