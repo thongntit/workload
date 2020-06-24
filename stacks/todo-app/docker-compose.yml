@@ -18,8 +18,9 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        - "traefik.enable=true"
-        - "traefik.backend=api"
+        - traefik.backend=todo-be
+        - traefik.docker.network=traefik_network
+        - traefik.port=8080
 
 networks:
   traefik_network:
