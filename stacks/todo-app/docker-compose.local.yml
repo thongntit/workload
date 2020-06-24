@@ -2,7 +2,7 @@
 version: '3.5'
 
 services:
-  frontend: 
+  frontend:
     image: registry.gitlab.com/trthong95/todo_app_fe:latest
     container_name: todo-app-fe
     networks:
@@ -19,13 +19,13 @@ services:
   backend:
     image: registry.gitlab.com/trthong95/todo_app:latest
     container_name: todo-app-be
-    networks: 
+    networks:
       - todo-app
     ports:
       - 8080:8080
-    environment: 
+    environment:
       - NODE_ENV=production
-    depends_on: 
+    depends_on:
       - "db"
     deploy:
       replicas: 1
