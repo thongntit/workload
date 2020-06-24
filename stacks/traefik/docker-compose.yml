@@ -6,8 +6,9 @@ services:
     container_name: "traefik"
     command:
     - --api.insecure=true
-    - --log.level="DEBUG"
+    - --log.level=DEBUG
     - --providers.docker
+    - --entrypoints.web.address=:80
     - --entrypoints.websecure.address=:443
     - --certificatesresolvers.le.acme.email=nanolove95@gmail.com
     - --certificatesresolvers.le.acme.storage=/cert/acme.json
