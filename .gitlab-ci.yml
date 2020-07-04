@@ -1,4 +1,4 @@
-image: docker/compose:1.26.0-rc2
+image: docker:19.03.8
 
 services:
   - docker:19.03.8-dind
@@ -17,7 +17,6 @@ stages:
 Rolling Update:
   stage: particle-apply
   script:
-    - docker-compose -f stacks/todo-app/docker-compose.yml pull
     - docker stack deploy --compose-file stacks/todo-app/docker-compose.yml todo
 
   only:
