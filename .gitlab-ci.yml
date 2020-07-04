@@ -1,0 +1,29 @@
+image: docker:19.03.8
+
+services:
+  - docker:19.03.8-dind
+
+stages:
+  - particle-apply
+
+Rolling Update:
+  stage: particle-apply
+  script:
+    - ls
+  only:
+    changes:
+      - stacks/todo-app
+
+# Deploy:
+#   stage: deploy
+#   before_script:
+#   - mkdir -p ~/.ssh
+#   - cp $SSH_CONFIG ~/.ssh/config
+#   - cp $SSH_KEY ~/.ssh/aws.pem
+#   - chmod 400 ~/.ssh/aws.pem
+#   - ssh-keyscan api.thongnt.space >> ~/.ssh/known_hosts
+#   - export DOCKER_HOST="ssh://ec2-user@api.thongnt.space"
+#   script:
+#     - docker service update --image $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA todo_todo-be
+#   only:
+#     - master
