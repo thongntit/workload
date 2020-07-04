@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=production
       - RDS_DATABASE_URL
+      - test
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.todo-be-http.rule=PathPrefix(`/todo/`)"
