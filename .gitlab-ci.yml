@@ -12,7 +12,7 @@ Rolling Update:
     - ls
   only:
     changes:
-      - stacks/todo-app
+      - stacks/todo-app/*
 
 # Deploy:
 #   stage: deploy
