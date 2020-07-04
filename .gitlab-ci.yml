@@ -12,10 +12,11 @@ before_script:
   - ssh-keyscan api.thongnt.space >> ~/.ssh/known_hosts
   - export DOCKER_HOST="ssh://ec2-user@api.thongnt.space"
 stages:
-  - particle-apply
+  - particle-apply-router
+  - particle-apply-services
 
 Rolling Update Todo:
-  stage: particle-apply
+  stage: particle-apply-services
   script:
     - docker stack deploy --compose-file stacks/todo-app/docker-compose.yml todo
 
@@ -24,7 +25,7 @@ Rolling Update Todo:
       - stacks/todo-app/*
 
 Rolling Update Traefik:
-  stage: particle-apply
+  stage: particle-apply-router
   script:
     - docker stack deploy --compose-file stacks/traefik/docker-compose.yml traefik
 
