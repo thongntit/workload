@@ -1,4 +1,4 @@
-image: docker/compose:1.26.2
+image: docker/compose:1.26.0-rc2
 
 services:
   - docker:19.03.8-dind
