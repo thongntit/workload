@@ -1,0 +1,33 @@
+image: docker:19.03.8
+
+services:
+  - docker:19.03.8-dind
+
+before_script:
+  - apk add -qU openssh
+  - mkdir -p ~/.ssh
+  - cp $SSH_CONFIG ~/.ssh/config
+  - cp $SSH_KEY ~/.ssh/aws.pem
+  - chmod 400 ~/.ssh/aws.pem
+  - ssh-keyscan api.thongnt.space >> ~/.ssh/known_hosts
+  - export DOCKER_HOST="ssh://ec2-user@api.thongnt.space"
+stages:
+  - particle-apply
+
+Rolling Update Todo:
+  stage: particle-apply
+  script:
+    - docker stack deploy --compose-file stacks/todo-app/docker-compose.yml todo
+
+  only:
+    changes:
+      - stacks/todo-app/*
+
+Rolling Update Traefik:
+  stage: particle-apply
+  script:
+    - docker stack deploy --compose-file stacks/traefik/docker-compose.yml traefik
+
+  only:
+    changes:
+      - stacks/traefik/*
