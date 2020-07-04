@@ -4,6 +4,7 @@ services:
   - docker:19.03.8-dind
 
 before_script:
+  - apk add -qU openssh
   - mkdir -p ~/.ssh
   - cp $SSH_CONFIG ~/.ssh/config
   - cp $SSH_KEY ~/.ssh/aws.pem
