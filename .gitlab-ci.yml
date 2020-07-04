@@ -1,12 +1,9 @@
-image: docker:19.03.8
+image: docker/compose
 
 services:
   - docker:19.03.8-dind
 
 before_script:
-  - apk --update add 'py-pip==8.1.2-r0'
-  - pip install 'docker-compose==1.8.0'
-  - chmod +x /usr/local/bin/docker-compose
   - mkdir -p ~/.ssh
   - cp $SSH_CONFIG ~/.ssh/config
   - cp $SSH_KEY ~/.ssh/aws.pem
