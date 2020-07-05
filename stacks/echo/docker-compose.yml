@@ -1,0 +1,20 @@
+# Use root/example as user/password credentials
+version: '3.5'
+
+services:
+  echo:
+    image: "jmalloc/echo-server"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.echo-http.rule=PathPrefix(`/echo`)"
+      - "traefik.http.routers.echo-http.middlewares=test-redirectscheme"
+      - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
+      - "traefik.http.routers.echo.tls=true"
+      - "traefik.http.routers.echo.tls.certresolver=le"
+      - "traefik.http.routers.echo.tls.domains[0].main=api.thongnt.space"
+    networks:
+      - traefik_network
+
+networks:
+  traefik_network:
+    external: true
