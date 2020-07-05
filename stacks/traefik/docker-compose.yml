@@ -19,7 +19,7 @@ services:
       - "443:443"
       - "8080:8080"
     volumes:
-      - "./:/cert"
+      - "/etc/ssl/certs/:/cert"
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
       - "traefik.http.routers.traefik.rule=Host(`api.thongnt.space`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
