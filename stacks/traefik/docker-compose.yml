@@ -22,7 +22,7 @@ services:
       - "/etc/ssl/certs/:/cert"
       - "/var/run/docker.sock:/var/run/docker.sock"
     labels:
-      - "traefik.http.routers.traefik.rule=Host(`api.thongnt.space`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik.rule=Host(`api.thongnt.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.users=nanolove95:$$apr1$$BhRiDaDt$$/Eb9rkCD2lcOZ125odz4K/"
