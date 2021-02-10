@@ -7,10 +7,10 @@ before_script:
   - apk add -qU openssh
   - mkdir -p ~/.ssh
   - cp $SSH_CONFIG ~/.ssh/config
-  - cp $SSH_KEY ~/.ssh/aws.pem
-  - chmod 400 ~/.ssh/aws.pem
-  - ssh-keyscan api.thongnt.space >> ~/.ssh/known_hosts
-  - export DOCKER_HOST="ssh://ec2-user@api.thongnt.space"
+  - cp $SSH_KEY ~/.ssh/hiraism
+  - chmod 400 ~/.ssh/hiraism
+  - ssh-keyscan api.thongnt.com >> ~/.ssh/known_hosts
+  - export DOCKER_HOST="ssh://root@api.thongnt.com"
 stages:
   - particle-apply-router
   - particle-apply-services
