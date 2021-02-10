@@ -11,7 +11,7 @@ services:
       - "traefik.http.routers.echo.rule=PathPrefix(`/echo`)"
       - "traefik.http.routers.echo.tls=true"
       - "traefik.http.routers.echo.tls.certresolver=le"
-      - "traefik.http.routers.echo.tls.domains[0].main=api.thongnt.space"
+      - "traefik.http.routers.echo.tls.domains[0].main=api.thongnt.com"
     networks:
       - traefik_network
 
