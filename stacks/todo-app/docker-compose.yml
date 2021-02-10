@@ -3,7 +3,7 @@ version: '3.5'
 
 services:
   todo-be:
-    image: registry.gitlab.com/trthong95/todo_app:latest
+    image: registry.gitlab.com/thongntit/todo_app:latest
     container_name: todo-app-be
     networks:
       - traefik_network
