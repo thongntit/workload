@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - internal
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: examples
+      MYSQL_PASSWORD: examples
+      MYSQL_DATABASE: gpdb
+    container_name: mysql
