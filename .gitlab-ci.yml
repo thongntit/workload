@@ -13,6 +13,7 @@ before_script:
   - export DOCKER_HOST="ssh://root@api.thongnt.com"
 stages:
   - particle-apply-router
+  - particle-apply-database
   - particle-apply-services
 
 Rolling Update Traefik:
@@ -23,6 +24,15 @@ Rolling Update Traefik:
   only:
     changes:
       - stacks/traefik/*
+
+Rolling Update Database:
+  stage: particle-apply-database
+  script:
+    - docker stack deploy --compose-file stacks/database/docker-compose.yml database
+
+  only:
+    changes:
+      - stacks/database/*
 
 Rolling Update Todo:
   stage: particle-apply-services

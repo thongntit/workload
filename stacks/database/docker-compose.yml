@@ -17,3 +17,6 @@ services:
       MYSQL_PASSWORD: examples
       MYSQL_DATABASE: gpdb
     container_name: mysql
+
+networks:
+  internal:
