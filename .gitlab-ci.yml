@@ -10,7 +10,7 @@ before_script:
   - cp $SSH_KEY ~/.ssh/hiraism
   - chmod 400 ~/.ssh/hiraism
   - ssh-keyscan api.thongnt.com >> ~/.ssh/known_hosts
-  - export DOCKER_HOST="ssh://root@api.thongnt.com"
+  - export DOCKER_HOST="$DOCKER_HOST"
 stages:
   - particle-apply-router
   - particle-apply-services
