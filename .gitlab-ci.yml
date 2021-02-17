@@ -41,3 +41,12 @@ Rolling Update Echo:
   only:
     changes:
       - stacks/echo/*
+
+Rolling Update DB:
+  stage: particle-apply-services
+  script:
+    - docker stack deploy --compose-file stacks/db/docker-compose.yml db
+
+  only:
+    changes:
+      - stacks/db/*
